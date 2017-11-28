@@ -86,14 +86,18 @@ help(str.xxx)
 
 str转化为list:
 str.split(" ") 以空格分割, 返回list值
-str.split(".") 以.分割
+str.split("."|" ") 以.和 分割, 可用 | 或许多符号，注意有些符号需转义。
 str.split()    如果split()不输入任何参数，就是见到任何分割符号，就用其分割了。
 str.split(".", maxsplit) 最多完成maxsplit次分割
+str2 = re.split(r"\W+", str)  re.split的比split更强大，只保留字母数字
 '''
 a = "www.baidu.com"
 print a.split(".")
 b = "I love you"
 print b.split(" ")
+
+word_list = [x for x in word_list if not (x.isdigit() or any(char.isdigit() for char in x))]
+#可用于删除所有数字，和含数字的str
 
 '''
 S.strip() 去掉字符串的左右空格
@@ -197,6 +201,11 @@ else:
 lst = ["python","jar","juice","heat","basic"]
 lst.sort(key = len)
 print lst
+
+listoflist = [['',0],['t',24],['e',5],['op',90],['mm',2]]
+listoflist.sort(key=lambda x: x[1])
+print listoflist
+#[['', 0], ['mm', 2], ['e', 5], ['t', 24], ['op', 90]]
 
 '''
 tuple 是一种序列类型的数据，这点上跟 list/str 类似。它的特点就是其中的元素不能更改，不可变，它的元素又可以是任何类型的数据。
@@ -431,6 +440,7 @@ squares = [x**2 for x in range(1,10)]
 mybag = [' glass',' apple','green leaf ']
 [one.strip() for one in mybag]              #去掉元素前后的空格
 '''
+path = os.path.abspath('.') 	#获取当前绝对路径，需import os
 
 f = open("file.txt")
 for line in f:
